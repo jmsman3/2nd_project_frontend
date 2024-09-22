@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <!-- Link to your external CSS file -->
+</head>
+
+<body >
+    <!-- Navbar Section -->
+    <header class="w-full bg-background shadow">
+        <div class="container flex h-16 items-center justify-between px-4 md:px-6">
+            <a class="flex items-center gap-2" href="login.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="h-6 w-6">
+                    <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
+                </svg>
+                <span class="font-bold">WindowChat</span>
+            </a>
+            <div class="hidden items-center gap-4 md:flex">
+                <a href="signup.html"
+                    class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                    Sign Up
+                </a>
+                <a href="login.html"
+                    class="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                    Log In
+                </a>
+                
+            </div>
+           
+            <!-- Hamburger Menu for Mobile -->
+            <div class="flex items-center md:hidden">
+                <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                    <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" class="hidden w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="menu" class="hidden md:hidden flex flex-col items-center gap-2 py-4">
+            <a href="signup.html"
+                class="block px-4 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                Sign Up
+            </a>
+            <a href="login.html"
+                class="mt-2 block px-4 py-2 text-sm font-medium text-accent-foreground bg-background border border-input rounded-md shadow-sm transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                Log In
+            </a>
+        </div>
+    </header>
+    <hr>
+
+    <!-- Main Content Section -->
+    <div class="flex min-h-[100vh] items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
+        <div class="w-full max-w-md space-y-6">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold tracking-tight text-foreground">Login to your account</h1>
+                <p class="mt-2 text-muted-foreground">Enter your email and password below to access your account.</p>
+            </div>
+            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+                <div class="p-6 space-y-4">
+                    <form action=""> <!-- Add your form action here -->
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium leading-none" for="login-username">Username</label>
+                            <input class="input-login"  type="text" id="login-username" placeholder="Enter Username"
+                                required />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium leading-none" for="login-password">Password</label>
+                            <input class="input-login" type="password" id="login-password" placeholder="Enter Password" required />
+                        </div>
+                        <button class="mt-4 login-btn rounded-md"  onclick="handleLogin(event)" type="submit">Log in</button>
+                        <button style="display: none;" id="wait_btn" type="submit" class="mt-4 login-btn rounded-md">
+                            Please Wait For Login...
+                        </button>
+                        <div id="error" class="text-red-500 text-sm mt-2"></div>  
+                        <!-- Errroe message uporeee -->
+
+                    </form>
+                </div>
+            </div>
+            <div class="text-center text-sm text-muted-foreground">
+                Don't have an account? <a class="font-medium underline" href="signup.html">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript for Hamburger Menu Toggle -->
+    <script src="signup.js"></script>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>

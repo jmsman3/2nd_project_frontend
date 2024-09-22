@@ -1,0 +1,46 @@
+/* :root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f3f4f6;
+    --text-color: #333;
+    --light-text-color: #666;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    background-color: var(--secondary-color);
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.7);
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-follow {
+    background-color: #4a90e2;
+    color: #fff;
+}
+
+.btn-follow:hover {
+    background-color: #357ABD;
+}
+ 
+.btn-following {
+    background-color: #ccc;
+}
+
+.btn-following:hover {
+    background-color: #b3b3b3;
+} */
