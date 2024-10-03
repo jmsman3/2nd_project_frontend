@@ -4,15 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Profile_html</title>
     <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css"> <!-- Link to your external CSS file -->
-    <link rel="stylesheet" href="profile.css"> 
+    <link rel="stylesheet" href="profile.css">
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+    </style>
 
 </head>
 
-<body class="home-class" style="display: none;" >
+<body class="home-class" style="display: none;">
     <!-- Navbar Section -->
     <header class="w-full bg-background shadow">
         <div class="container flex h-16 items-center justify-between px-4 md:px-6">
@@ -22,30 +38,25 @@
                     class="h-6 w-6">
                     <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
                 </svg>
-                <span class="font-bold" >WindowChat</span>
-            </a>
-           
-            <div class="hidden items-center gap-4 md:flex">
-                <a href="home.html"  onclick=""
-                class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                Home
+                <span class="font-bold">WindowChat</span>
             </a>
 
+            <!-- Desktop Menu -->
             <div class="hidden items-center gap-4 md:flex">
-                <a href=""  onclick=""
-                class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                Edit Profile
-            </a>
-
-            
-            <div class="hidden items-center gap-4 md:flex">
-                <a href=""  onclick="handleLogout()"
-                class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                Logout
-            </a>
-
+                <a href="home.html"
+                    class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                    Home
+                </a>
+                <a href="#" onclick="openModal()"
+                    class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                    Edit Profile
+                </a>
+                <a href="#" onclick="handleLogout()"
+                    class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                    Logout
+                </a>
             </div>
-           
+
             <!-- Hamburger Menu for Mobile -->
             <div class="flex items-center md:hidden">
                 <button id="menu-toggle" class="text-gray-700 focus:outline-none">
@@ -62,50 +73,199 @@
                 </button>
             </div>
         </div>
+
         <!-- Mobile Menu -->
         <div id="menu" class="hidden md:hidden flex flex-col items-center gap-2 py-4">
-            <a href=""
+            <a href="home.html"
                 class="block px-4 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
-               Logout
+                Home
             </a>
-
+            <a href="#" onclick="openModal()"
+                class="block px-4 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                Edit Profile
+            </a>
+            <a href="#" onclick="handleLogout()"
+                class="block px-4 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                Logout
+            </a>
         </div>
     </header>
     <hr>
 
     <!-- Main Content Section -->
-  
-   <!-- Profile Section -->
-   <div class="container mx-auto py-12">
-    <div class="grid grid-cols-12 gap-4">
-        <!-- Left Space -->
-        <div class="col-span-3"></div>
 
-        <!-- Profile Content (Middle Column) -->
-        <div class="col-span-6 bg-white rounded-lg shadow-lg p-8">
-            <div class="text-center">
-                <img src="/placeholder.svg?height=150&width=150" alt="Profile Picture" class="mx-auto rounded-full w-36 h-36 border-4 border-gray-200">
-                <h1 class="mt-4 text-2xl font-bold">John Doe</h1>
-                <p class="text-gray-600">@johndoe</p>
-                <p class="mt-2 text-sm text-gray-500">Passionate developer, coffee enthusiast, and avid traveler. Let's connect!</p>
+    <!-- Profile Section -->
+    <div class="container mx-auto py-12">
+        <div class="grid grid-cols-12 gap-4">
+            <!-- Left Space -->
+            <div class="col-span-3"></div>
+
+            <!-- Profile Content (Middle Column) -->
+            <div class="col-span-6 bg-white rounded-lg shadow-lg p-8">
+                <div class="text-center">
+                    <!-- Profile Picture -->
+                    <img id="profile-pic" src="" alt="Profile Picture"class="mx-auto rounded-full w-36 h-36 border-4 border-gray-200">
+                    <!-- User Name -->
+                    <h1 id="user-name" class="mt-4 text-2xl font-bold"></h1>
+                    <!-- User Handle (Username) -->
+                    <p id="user-handle" class="text-gray-600"></p>
+                    <!-- User Bio -->
+                    <p id="user-bio" class="mt-2 text-sm text-gray-500"></p>
+                    <!-- User Location -->
+                    <p id="user-location" class="mt-2 text-sm text-gray-500"> </p>
+                    <!-- User Mobile -->
+                    <p id="user-mobile" class="mt-2 text-sm text-gray-500"></p>
+                    <!-- Join Date -->
+                    <p id="join-date" class="mt-2 text-sm text-gray-500"></p> <!-- Join Date will be inserted here -->
+                </div>
+
+                <!-- Buttons for Followers/Following -->
+                <div class="mt-4 flex justify-center space-x-4">
+                    <button class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600">Followers</button>
+                    <button class="px-4 py-2 bg-gray-300 rounded-full hover:bg-gray-400">2.5k Following</button>
+                </div>
             </div>
 
-            <div class="mt-4 flex justify-center space-x-4">
-                <button class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600">Follow</button>
-                <button class="px-4 py-2 bg-gray-300 rounded-full hover:bg-gray-400">2.5k Following</button>
+            <!-- Right Space -->
+            <div class="col-span-3"></div>
+        </div>
+    </div>
+
+
+
+    <!-- Post Feed -->
+    <div id="posts-container" class="flex justify-center flex-col space-y-2">
+        <!-- Post Card -->
+        <div class="bg-white shadow-md rounded-md p-6">
+
+            <!-- Specific User  all post should appear dynamically here -->
+        </div>
+    </div>
+
+
+    
+
+    <!-- Update Profile Modal -->
+    <div id="updateProfileModal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+            <div class="p-6 space-y-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-gray-900">Update Your Profile</h2>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-gray-600">Make changes to your profile here. Click save when you're done.</p>
+                <form id="updateProfileForm" class="space-y-6" method="post">
+
+                    <div class="flex flex-col items-center space-y-4">
+                        <div
+                            class="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+
+                            <img id="profileImagePreview" src="" alt="Profile picture"
+                                class="w-full h-full object-cover hidden">
+                            <span id="noImageText" class="text-gray-400">No Image</span>
+                        </div>
+                        <label for="picture"
+                            class="cursor-pointer bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">
+                            Upload Picture
+                            <input type="file" id="picture" name="image" class="hidden" accept="image/*"
+                                onchange="convertImageToBase64(event)">
+                        </label>
+                        <input type="hidden" id="imageString" name="image_string" value="">
+                    </div>
+
+                    <div>
+                        <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
+                        <input type="text" id="first_name" name="first_name"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+
+                    <div>
+                        <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
+                        <input type="text" id="last_name" name="last_name"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                        <input type="text" id="username" name="username"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+
+                    <div>
+                        <label for="mobile_no" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+                        <input type="tel" id="mobile_no" name="mobile_no"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+
+                    <div>
+                        <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+                        <input type="text" id="location" name="location"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+
+
+
+                    <div>
+                        <label for="bio" class="block text-sm font-medium text-gray-700">Bio</label>
+                        <textarea id="bio" name="bio" rows="4"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <button type="submit"
+                            class="flex-1 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">
+                            Save Changes
+                        </button>
+                        <button type="button" onclick="closeModal()"
+                            class="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 transition duration-300">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-
-        <!-- Right Space -->
-        <div class="col-span-3"></div>
     </div>
-</div>
+
+    <script>
+        function openModal() {
+            document.getElementById('updateProfileModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('updateProfileModal').classList.add('hidden');
+        }
+
+        function convertImageToBase64(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function () {
+                const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+                document.getElementById('imageString').value = base64String;
+                const output = document.getElementById('profileImagePreview');
+                output.src = reader.result;
+                output.classList.remove('hidden');
+                document.getElementById('noImageText').classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
 
 
 
     <!-- JavaScript for Hamburger Menu Toggle -->
+
     <script src="signup.js"></script>
+    <script src="profile.js"></script>
+
     <script>
+
         const menuToggle = document.getElementById('menu-toggle');
         const menu = document.getElementById('menu');
         const hamburgerIcon = document.getElementById('hamburger-icon');
@@ -118,13 +278,12 @@
         });
 
         const token = localStorage.getItem('token');
-        if(!token){
+        if (!token) {
             window.location.href = "signup.html";
-        }else{
+        } else {
             document.body.style.display = "block";
         }
     </script>
-
 
 </body>
 

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css"> <!-- Link to your external CSS file -->
 </head>
 
-<body class="home-class" style="display: none;" >
+<body class="home-class" style="display: none;">
     <!-- Navbar Section -->
     <header class="w-full bg-background shadow">
         <div class="container flex h-16 items-center justify-between px-4 md:px-6">
@@ -20,26 +20,23 @@
                     class="h-6 w-6">
                     <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
                 </svg>
-                <span class="font-bold" >WindowChat</span>
+                <span class="font-bold">WindowChat</span>
             </a>
             <div class="hidden items-center gap-4 md:flex">
-                <a href="home.html"  onclick=""
-                class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                Home
-            </a>
-            <div class="hidden items-center gap-4 md:flex">
-                <a href="profile.html"  onclick=""
-                class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                Profile
-            </a>
-            <div class="hidden items-center gap-4 md:flex">
-                <a href=""  onclick="handleLogout()"
-                class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                Logout
-            </a>
-
+                <a href="home.html"
+                    class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                    Home
+                </a>
+                <a href="profile.html"
+                    class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                    Profile
+                </a>
+                <a href="#" onclick="handleLogout()"
+                    class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                    Logout
+                </a>
             </div>
-           
+            
             <!-- Hamburger Menu for Mobile -->
             <div class="flex items-center md:hidden">
                 <button id="menu-toggle" class="text-gray-700 focus:outline-none">
@@ -58,21 +55,118 @@
         </div>
         <!-- Mobile Menu -->
         <div id="menu" class="hidden md:hidden flex flex-col items-center gap-2 py-4">
-            <a href=""
+            <!-- Updated hrefs to link to home and profile pages -->
+            <a href="home.html"
                 class="block px-4 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
-               Logout
+                Home
             </a>
-
+            <a href="profile.html"
+                class="block px-4 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                Profile
+            </a>
+            <a href="#" onclick="handleLogout()"
+                class="block px-4 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                Logout
+            </a>
         </div>
     </header>
     <hr>
-
+   
     <!-- Main Content Section -->
-  
-    <h1>This is Home page</h1>
+    <!-- <h1>This is Home page</h1> -->
+
+    <div class="container mx-auto p-4 max-w-3xl">
+        <!-- User Profile Form -->
+        <div class="bg-white shadow-md rounded-md mb-8 p-6">
+            <h2 class="text-2xl font-bold mb-4">Create a Post</h2>
+            <form id="post-form" class="space-y-4">
+                <!-- Textarea for Post Content -->
+                <textarea id="post-content" class="w-full p-2 border rounded" placeholder="What's on your mind?" rows="3"></textarea>
+              
+                <div class="flex justify-around items-center space-x-8"> <!-- Centered and spaced inputs -->
+                  <!-- File Input for Post Image with Emoji and Dotted Border -->
+                  <label class="flex items-center cursor-pointer space-x-2 border border-dotted border-gray-400 p-2 rounded-md">
+                    <span class="text-xl">📷</span> <!-- Camera Emoji -->
+                    <!-- Input for ImageBB URL -->
+                <!-- <input id="imagebb-url" type="url" class="w-full p-2 border rounded" placeholder="ImageBB URL" required /> -->
+                    <input id="post-image" type="file" class="hidden" accept="image/*" />
+                    <span class="file:py-2 file:px-4 file:rounded-full file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100">Image</span>
+                  </label>
+              
+                  <!-- File Input for Post Video with Emoji and Dotted Border -->
+                  <label class="flex items-center cursor-pointer space-x-2 border border-dotted border-gray-400 p-2 rounded-md">
+                    <span class="text-xl">🎥</span> <!-- Video Camera Emoji -->
+                    <input id="post-video" type="file" class="hidden" accept="video/*" />
+                    <span class="file:py-2 file:px-4 file:rounded-full file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100">Video</span>
+                  </label>
+                </div>
+              
+                <!-- Button to Submit Post -->
+                <button id="post-button" type="button" class="w-full bg-blue-500 text-white py-2 px-4 rounded">Post</button>
+              </form>
+              <!-- For this js it will autometically refresh after Post Something -->
+              <script>
+                document.getElementById('post-button').addEventListener('click', function() {
+                  // Add your post submission logic here
+              
+                  // Refresh the page after the button is clicked
+                  window.location.reload();
+                });
+              </script>
+              
+              
+              
+        </div>
+
+        <!-- Post Feed -->
+        <div  id="posts-container" class="flex justify-center flex-col space-y-2">
+            
+            
+        </div>
+    </div>
+   
+
+<!--             
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Handle dropdown menu
+                document.querySelectorAll('[data-dropdown]').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const menu = this.nextElementSibling;
+                        menu.classList.toggle('hidden');
+                    });
+                });
+
+                // Handle form submission (example)
+                document.getElementById('post-button').addEventListener('click', function () {
+                    const content = document.getElementById('post-content').value;
+                    const image = document.getElementById('post-image').files[0];
+                    const video = document.getElementById('post-video').files[0];
+
+                    console.log('Post content:', content);
+                    console.log('Image file:', image);
+                    console.log('Video file:', video);
+
+                    // You can add form submission logic here
+                });
+
+                document.getElementById('comment-button').addEventListener('click', function () {
+                    const commentInput = document.getElementById('comment-input');
+                    const commentText = commentInput.value;
+
+                    console.log('Comment:', commentText);
+
+                    // You can add comment submission logic here
+                    commentInput.value = '';
+                });
+            });
+
+        </script> -->
 
     <!-- JavaScript for Hamburger Menu Toggle -->
     <script src="signup.js"></script>
+    <script src="create_post.js"></script>
+    <script src="show_post.js"></script>
     <script>
         const menuToggle = document.getElementById('menu-toggle');
         const menu = document.getElementById('menu');
@@ -86,14 +180,12 @@
         });
 
         const token = localStorage.getItem('token');
-        if(!token){
+        if (!token) {
             window.location.href = "signup.html";
-        }else{
+        } else {
             document.body.style.display = "block";
         }
     </script>
-
-
 </body>
 
 </html>

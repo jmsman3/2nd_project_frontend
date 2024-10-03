@@ -218,6 +218,7 @@ const handleLogin = (event) => {
       })
       .then(res => res.json())
       .then(data => {
+        
           // Check if login is successful by checking for token and user_id
           if (data.token && data.user_id) {
               localStorage.setItem("token", data.token);
