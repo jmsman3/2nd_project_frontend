@@ -15,26 +15,18 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Update profile fields
-        document.getElementById("profile-pic").src =
-          data.image || "images/LOLER-inspections-1.jpg";
+      // Get  profile fields
+      document.getElementById("profile-pic").src =data.image || "images/LOLER-inspections-1.jpg";
 
-        document.getElementById(
-          "user-name"
-        ).textContent = `${data.first_name} ${data.last_name}`;
-        document.getElementById("user-handle").textContent = `@${data.user}`;
+      document.getElementById("user-name").textContent = `${data.first_name} ${data.last_name}`;
 
-        document.getElementById("user-bio").innerHTML = `<b>Bio-</b> ${
-          data.bio || "No bio available."
-        }`;
-        document.getElementById(
-          "user-location"
-        ).innerHTML = `<b>Location-</b> ${
-          data.location || "No Location available."
-        }`;
-        document.getElementById("user-mobile").innerHTML = `<b>Mobile-</b> ${
-          data.mobile_no || "No Mobile number available."
-        }`;
+      document.getElementById("user-handle").textContent = `@${data.user}`;
+
+      document.getElementById("user-bio").innerHTML = `<b>Bio-</b> ${data.bio || "No bio available." }`;
+
+      document.getElementById("user-location" ).innerHTML = `<b>Location-</b> ${data.location || "No Location available."}`;
+
+      document.getElementById("user-mobile").innerHTML = `<b>Mobile-</b> ${data.mobile_no || "No Mobile number available."}`;
 
 
         const currentDate = new Date();
@@ -52,6 +44,129 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Part two js
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const form = document.querySelector("form");
+//   const profileImagePreview = document.getElementById("profileImagePreview");
+//   const noImageText = document.getElementById("noImageText");
+//   const updateProfileModal = document.getElementById("updateProfileModal");
+//   const userId = localStorage.getItem("user_id");
+//   const token = localStorage.getItem("token");
+//   let base64ImageString = "";
+
+//   if (!userId || !token) {
+//     window.location.href = "signup.html";
+//     return;
+//   }
+
+//   function openModal() {
+//     fetch(`http://127.0.0.1:8000/user/user_details/${userId}/`, {
+//       method: "GET",
+//       headers: {
+//         Authorization: `Token ${token}`,
+//         "Content-Type": "application/json",
+//       },
+//       //   headers: {
+//       //       'Authorization': `Bearer ${token}`
+//       //   }
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {
+//         console.log("Before update:", data); // Log the data fetched from the server
+
+//         document.getElementById("first_name").value = data.first_name || "";
+//         document.getElementById("last_name").value = data.last_name || "";
+//         document.getElementById("username").value = data.user || "";
+//         document.getElementById("mobile_no").value = data.mobile_no || "";
+//         document.getElementById("location").value = data.location || "";
+//         document.getElementById("bio").value = data.bio || "";
+
+//         if (data.image) {
+//           profileImagePreview.src = data.image;
+//           profileImagePreview.classList.remove("hidden");
+//           noImageText.classList.add("hidden");
+//         } else {
+//           profileImagePreview.classList.add("hidden");
+//           noImageText.classList.remove("hidden");
+//         }
+
+//         updateProfileModal.classList.remove("hidden");
+//       })
+//       .catch((error) => console.error("Error fetching user data:", error));
+//   }
+
+//   function closeModal() {
+//     updateProfileModal.classList.add("hidden");
+//   }
+
+//   function previewImage(event) {
+//     const file = event.target.files[0];
+//     if (file) {
+//       const reader = new FileReader();
+//       reader.onload = function (e) {
+//         base64ImageString = e.target.result;
+//         profileImagePreview.src = base64ImageString;
+//         profileImagePreview.classList.remove("hidden");
+//         noImageText.classList.add("hidden");
+//       };
+//       reader.readAsDataURL(file);
+//     }
+//   }
+
+//   form.addEventListener("submit", (event) => {
+//     event.preventDefault();
+
+//     const formData = new FormData(form);
+//     const data = {
+//       first_name: formData.get("first_name"),
+//       last_name: formData.get("last_name"),
+//       user: formData.get("username"),
+//       mobile_no: formData.get("mobile_no"),
+//       location: formData.get("location"),
+//       bio: formData.get("bio"),
+//       image: base64ImageString || undefined, // Use existing image if base64ImageString is empty
+//     };
+
+//     console.log("Data being sent for update:", data);
+
+//     fetch(`http://127.0.0.1:8000/user/user_details/${userId}/`, {
+//       method: "PUT",
+//       headers: {
+//         Authorization: `Token ${token}`,
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(data),
+//     })
+//       .then((response) => response.json())
+//       .then((result) => {
+//         console.log("Server response after update:", result);
+
+//         if (result.error) {
+//           console.error("Error updating profile:", result.error);
+//         } else {
+//           closeModal();
+//           // Update profile section with the new data document.getElementById("profile-pic").src = data.image || document.getElementById("profile-pic").src;
+//           document.getElementById(
+//             "user-name"
+//           ).textContent = `${data.first_name} ${data.last_name}`;
+//           document.getElementById("user-handle").textContent = `${data.user}`;
+//           document.getElementById("user-bio").textContent = `${data.bio}`;
+//           document.getElementById(
+//             "user-location"
+//           ).textContent = `${data.location}`;
+//           document.getElementById(
+//             "user-mobile"
+//           ).textContent = `${data.mobile_no}`;
+//         }
+//       })
+//       .catch((error) => console.error("Error updating profile:", error));
+//   });
+
+//   document
+//     .querySelector('a[onclick="openModal()"]')
+//     .addEventListener("click", openModal);
+//   document.getElementById("picture").addEventListener("change", previewImage);
+// });
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
@@ -74,9 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
         Authorization: `Token ${token}`,
         "Content-Type": "application/json",
       },
-      //   headers: {
-      //       'Authorization': `Bearer ${token}`
-      //   }
     })
       .then((response) => response.json())
       .then((data) => {
@@ -121,8 +233,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  form.addEventListener("submit", (event) => {
+  async function uploadImageToImgBB(imageFile) {
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    const response = await fetch("https://api.imgbb.com/1/upload?key=59c029e1206724ae1f2e3c30d278d10f", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      return data.data.display_url; // Return the uploaded image URL
+    } else {
+      throw new Error("Image upload failed");
+    }
+  }
+
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    let imageUrl = base64ImageString; // Start with the base64 image string
+
+    // Check if a new image is being uploaded
+    const fileInput = document.getElementById("picture");
+    if (fileInput.files.length > 0) {
+      const imageFile = fileInput.files[0];
+      try {
+        imageUrl = await uploadImageToImgBB(imageFile); // Upload and get the image URL
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        return; // Exit the function on upload error
+      }
+    }
 
     const formData = new FormData(form);
     const data = {
@@ -132,7 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mobile_no: formData.get("mobile_no"),
       location: formData.get("location"),
       bio: formData.get("bio"),
-      image: base64ImageString || undefined, // Use existing image if base64ImageString is empty
+      image: imageUrl || undefined, // Use the uploaded image URL
     };
 
     console.log("Data being sent for update:", data);
@@ -154,8 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           closeModal();
           // Update profile section with the new data
-          document.getElementById("profile-pic").src =
-            data.image || document.getElementById("profile-pic").src;
+          document.getElementById("profile-pic").src = imageUrl || document.getElementById("profile-pic").src; // Update profile pic
           document.getElementById(
             "user-name"
           ).textContent = `${data.first_name} ${data.last_name}`;
@@ -178,9 +320,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("picture").addEventListener("change", previewImage);
 });
 
+
 // Part 3
-
-
 document.addEventListener("DOMContentLoaded", function () {
   // Fetching userId and token from localStorage
   const userId = localStorage.getItem("user_id");
@@ -281,16 +422,16 @@ async function fetchAndDisplayUserPosts(userId, token) {
                       </div>
                   </div>`;
 
-      if (post.image) {
-        postContent += `<img src="${post.image}" alt="Post Image" class="w-full h-auto rounded mb-4">`;
-      }
-      if (post.video) {
-        postContent += `<video controls class="w-full h-auto rounded mb-4"><source src="${post.video}" type="video/mp4">Your browser does not support the video tag.</video>`;
-      }
-      if (post.caption) {
-        postContent += `<p class="text-gray-800 mt-2">${post.caption}</p>`;
-      }
-
+                  if (post.caption) {
+                    postContent += `<p class="text-gray-800 mt-2">${post.caption}</p>`;
+                }
+                if (post.image) {
+                    postContent += `<img src="${post.image}" alt="Post Image" class="w-full max-w-[1080px] max-h-[1080px] object-cover aspect-[1/1] rounded mb-4">`;
+                }
+                if (post.video) {
+                    postContent += `<video controls class="w-full max-w-[1080px] max-h-[1080px] object-cover aspect-[1/1] rounded mb-4"><source src="${post.video}" type="video/mp4">Your browser does not support the video tag.</video>`;
+                }
+               
       postElement.innerHTML = postContent;
       postsContainer.appendChild(postElement);
 

@@ -1,3 +1,6 @@
+
+
+// part-2
 // Function to fetch and display posts
 async function fetchAndDisplayPosts() {
     try {
@@ -22,6 +25,9 @@ async function fetchAndDisplayPosts() {
 
         posts.forEach(post => {
             console.log(post);  // Check if post.user_id exists
+            console.log("Post image URL:", post.image);
+            console.log("Post Video here URL:", post.video);
+
 
             const postElement = document.createElement('div');
             postElement.classList.add('bg-white', 'shadow-md', 'rounded-md', 'p-6', 'mb-4');
@@ -36,10 +42,19 @@ async function fetchAndDisplayPosts() {
                 <div class="flex justify-between items-start mb-4">
                     <div class="flex items-center space-x-3">
                         <div class="w-10 h-10 rounded-full bg-gray-300">
-                            <img src="${postImage}" alt="Post Image" class="w-full h-full object-cover rounded-full">
+                           
+
+                            <img class="post-image-click" data-user-id="${post.user_id}" src="${postImage}" alt="Post Image" class="w-full h-full object-cover rounded-full">
+
                         </div>
                         <div>
-                            <p id="post-creator" class="font-semibold" data-user-id="${post.user_id}">${post.post_creator}</p>
+                            
+                            <div class="flex justify-between items-center gap-1">
+                                <p class="font-semibold post-name-click" data-user-id="${post.user_id}">${post.post_creator}</p>
+                                <p class="font-semibold text-blue-600 post-creator" data-user-id="${post.user_id}">View Profile</p>
+                            </div>
+
+                            
                             <p class="text-sm text-gray-500">${new Date(post.created_at).toLocaleString()}</p>
                         </div>
                     </div>
@@ -56,16 +71,16 @@ async function fetchAndDisplayPosts() {
                     </div>
                 </div>
             `;
-
-            if (post.image) {
-                postContent += `<img src="${post.image}" alt="Post Image" class="w-full h-auto rounded mb-4">`;
-            }
-            if (post.video) {
-                postContent += `<video controls class="w-full h-auto rounded mb-4"><source src="${post.video}" type="video/mp4">Your browser does not support the video tag.</video>`;
-            }
             if (post.caption) {
                 postContent += `<p class="text-gray-800 mt-2">${post.caption}</p>`;
             }
+            if (post.image) {
+                postContent += `<img src="${post.image}" alt="Post Image" class="w-full max-w-[1080px] max-h-[1080px] object-cover aspect-[1/1] rounded mb-4">`;
+            }
+            if (post.video) {
+                postContent += `<video controls class="w-full max-w-[1080px] max-h-[1080px] object-cover aspect-[1/1] rounded mb-4"><source src="${post.video}" type="video/mp4">Your browser does not support the video tag.</video>`;
+            }
+           
 
             postContent += `
                 <div class="flex justify-between items-center mb-4">
@@ -89,17 +104,37 @@ async function fetchAndDisplayPosts() {
             `;
 
             postElement.innerHTML = postContent;
-
+            
+            postsContainer.appendChild(postElement);
+            // aita holo name e click korbe
             // Event listener for redirecting to detail_profile.html
-            const postCreatorElement = getElementById('post-creator');
+            const postCreatorElement = postElement.querySelector('.post-creator');
             postCreatorElement.addEventListener('click', () => {
                 const userId = postCreatorElement.getAttribute('data-user-id');
                 console.log("Redirecting to profile of user ID:", userId);
                 // Redirect to the profile detail page with userId
                 window.location.href = `Detail_Profile.html?user_id=${userId}`; // Adjust the URL structure according to your Django routing
             });
+            
+           
+            // r aita view profile text e click korbe
+            // Event listener for post creator's name click
+                const postCreatorNameElement = postElement.querySelector('.post-name-click');
+                postCreatorNameElement.addEventListener('click', () => {
+                    const userId = postCreatorNameElement.getAttribute('data-user-id');
+                    console.log("Redirecting to profile of user ID:", userId);
+                    window.location.href = `Detail_Profile.html?user_id=${userId}`;
+                });
+            
 
-            postsContainer.appendChild(postElement);
+            // Event listener for post creator's image click
+                const postCreatorImageElement = postElement.querySelector('.post-image-click');
+                postCreatorImageElement.addEventListener('click', () => {
+                    const userId = postCreatorImageElement.getAttribute('data-user-id');
+                    console.log("Redirecting to profile of user ID:", userId);
+                    window.location.href = `Detail_Profile.html?user_id=${userId}`;
+                });
+
 
             // For Comment
 
@@ -177,6 +212,9 @@ async function fetchAndDisplayPosts() {
         console.error('Error fetching posts:', error);
     }
 }
+
+fetchAndDisplayPosts();
+
 
 // Function to like/unlike a post with console logging
 let likedPosts = new Set(); // Maintain a set of liked post IDs

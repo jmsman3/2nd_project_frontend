@@ -79,43 +79,67 @@
         <!-- User Profile Form -->
         <div class="bg-white shadow-md rounded-md mb-8 p-6">
             <h2 class="text-2xl font-bold mb-4">Create a Post</h2>
-            <form id="post-form" class="space-y-4">
-                <!-- Textarea for Post Content -->
+            <form id="post-form"  enctype="multipart/form-data" method="post" class="space-y-4">
+                <!-- Textarea -->
                 <textarea id="post-content" class="w-full p-2 border rounded" placeholder="What's on your mind?" rows="3"></textarea>
-              
-                <div class="flex justify-around items-center space-x-8"> <!-- Centered and spaced inputs -->
-                  <!-- File Input for Post Image with Emoji and Dotted Border -->
-                  <label class="flex items-center cursor-pointer space-x-2 border border-dotted border-gray-400 p-2 rounded-md">
-                    <span class="text-xl">📷</span> <!-- Camera Emoji -->
-                    <!-- Input for ImageBB URL -->
-                <!-- <input id="imagebb-url" type="url" class="w-full p-2 border rounded" placeholder="ImageBB URL" required /> -->
-                    <input id="post-image" type="file" class="hidden" accept="image/*" />
-                    <span class="file:py-2 file:px-4 file:rounded-full file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100">Image</span>
-                  </label>
-              
-                  <!-- File Input for Post Video with Emoji and Dotted Border -->
-                  <label class="flex items-center cursor-pointer space-x-2 border border-dotted border-gray-400 p-2 rounded-md">
-                    <span class="text-xl">🎥</span> <!-- Video Camera Emoji -->
-                    <input id="post-video" type="file" class="hidden" accept="video/*" />
-                    <span class="file:py-2 file:px-4 file:rounded-full file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100">Video</span>
-                  </label>
+                <div class="flex justify-between items-center space-x-8"> 
+                    <!-- Image Input at Left Center -->
+                    <label class="flex flex-col items-center cursor-pointer space-x-2 border border-dotted p-2 rounded-md">
+                        <span class="text-xl">📷</span> 
+                        <input id="post-image" type="file" accept="image/*"  />
+                        <span class="file:py-2 file:px-4 file:rounded-full file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"><b>Upload Image</b></span>
+                    </label>
+                  
+                    <!-- Video Input at Right Center -->
+                    <label class="flex flex-col items-center cursor-pointer space-x-2 border border-dotted p-2 rounded-md">
+                        <span class="text-xl">🎥</span> 
+                        <input id="post-video" type="file" accept="video/*" />
+                        <span class="file:py-2 file:px-4 file:rounded-full file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"><b>Upload Video</b></span>
+                    </label>
                 </div>
               
                 <!-- Button to Submit Post -->
-                <button id="post-button" type="button" class="w-full bg-blue-500 text-white py-2 px-4 rounded">Post</button>
-              </form>
+                <button id="post-button"  type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded">Post</button>
+            </form>
               <!-- For this js it will autometically refresh after Post Something -->
+
+<!--               
               <script>
-                document.getElementById('post-button').addEventListener('click', function() {
-                  // Add your post submission logic here
+                document.getElementById('post-button').addEventListener('click', function(event) {
               
-                  // Refresh the page after the button is clicked
+                    event.preventDefault();
                   window.location.reload();
                 });
+                    
+
+                
+                // document.getElementById('post-form').addEventListener('click' , function(e){
+                //     e.preventDefault();
+                //     const formData = new FormData();
+                //     const imageInput = document.getElementById('post-image').files[0];
+                //     // console.log(imageInput);
+                //     formData.append('image' , imageInput);
+
+                //     fetch('https://api.imgbb.com/1/upload?key=59c029e1206724ae1f2e3c30d278d10f',{
+                //          method : 'POST',
+                //          body : formData,
+                //     })
+                //     .then(response => response.json)
+                //     .the(data =>  {
+                //         console.log(data);
+                //     })
+                //     .catch(error=>{
+                //         console.error('Error' , error);
+                //     })
+
+
+                // });
+                
+    
               </script>
-              
-              
-              
+                 
+                  -->
+
         </div>
 
         <!-- Post Feed -->
