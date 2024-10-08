@@ -18,7 +18,7 @@
 //     if (password === confirm_password) {
 //         // document.getElementById("error").innerText = "";
 //         if (/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password)) {
-//             fetch("http://127.0.0.1:8000/user/register/", {
+//             fetch("https://social-2nd-project-backend.vercel.app/user/register/", {
 //                 method: "POST",
 //                 headers: { "content-type": "application/json" },
 //                 body: JSON.stringify(info)
@@ -86,7 +86,7 @@ const handleRegistration = (event) => {
         password
       )
     ) {
-      fetch("http://127.0.0.1:8000/user/register/", {
+      fetch("https://social-2nd-project-backend.vercel.app/user/register/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(info),
@@ -133,7 +133,7 @@ const handleRegistration = (event) => {
 //     const password = getValue("login-password");
 
 //     if (username && password) {
-//         fetch("http://127.0.0.1:8000/user/login/", {
+//         fetch("https://social-2nd-project-backend.vercel.app/user/login/", {
 //             method: "POST",
 //             headers: { "content-type": "application/json" },
 //             body: JSON.stringify({ username, password }),
@@ -166,7 +166,7 @@ const handleRegistration = (event) => {
 //     waitButton.style.display = 'inline-block';
 
 //     if (username && password) {
-//         fetch("http://127.0.0.1:8000/user/login/", {
+//         fetch("https://social-2nd-project-backend.vercel.app/user/login/", {
 //             method: "POST",
 //             headers: { "content-type": "application/json" },
 //             body: JSON.stringify({ username, password }),
@@ -211,7 +211,7 @@ const handleLogin = (event) => {
   waitButton.style.display = 'inline-block';
 
   if (username && password) {
-      fetch("http://127.0.0.1:8000/user/login/", {
+      fetch("https://social-2nd-project-backend.vercel.app/user/login/", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({ username, password }),
@@ -259,7 +259,7 @@ const handleLogin = (event) => {
 
 const handleLogout = () => {
   const token = localStorage.getItem("token");
-  fetch("http://127.0.0.1:8000/user/logout/", {
+  fetch("https://social-2nd-project-backend.vercel.app/user/logout/", {
     method: "POST",
     headers: {
       Authorization: `Token ${token}`,

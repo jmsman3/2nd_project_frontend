@@ -24,13 +24,27 @@
         .fade-in {
             animation: fadeIn 0.3s ease-in-out;
         }
+    html {
+    scroll-behavior: smooth;
+    }
+
+    body {
+    padding-top: 64px; /* Adjust this value to match your header height */
+    }
+
+    .fixed {
+    position: fixed;
+    }
+
+    .z-50 {
+    z-index: 50;
+    }
     </style>
 
 </head>
-
-<body class="home-class" style="display: none;">
+<body class="home-class pt-16" style="display: none;">
     <!-- Navbar Section -->
-    <header class="w-full bg-background shadow">
+    <header class="w-full bg-background shadow fixed top-0 left-0 right-0 z-50">
         <div class="container flex h-16 items-center justify-between px-4 md:px-6">
             <a class="flex items-center gap-2" href="home.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -104,7 +118,8 @@
         <div class="col-span-6 bg-white rounded-lg shadow-lg p-8">
             <div class="text-center">
                 <!-- Profile Picture -->
-                <img id="profile-pic-particular" src="" alt="Profile Picture" class="mx-auto rounded-full w-36 h-36 border-4 border-gray-200">
+                <img id="profile-pic-particular" src="" alt="Profile Picture" class="mx-auto rounded-full w-36 h-36 object-cover border-4 border-gray-200">
+
                 <!-- User Name -->
                 <h1 id="user-name-particular" class="mt-4 text-2xl font-bold"></h1>
                 <!-- User Handle (Username) -->

@@ -8,7 +8,7 @@ async function fetchAndDisplayPosts() {
         console.log("Show the User ID:", userId);
 
         // Fetch posts from the API
-        const response = await fetch('http://127.0.0.1:8000/crud/posts/', {
+        const response = await fetch('https://social-2nd-project-backend.vercel.app/crud/posts/', {
             method: 'GET',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`  // Include token for authenticated requests
@@ -43,8 +43,11 @@ async function fetchAndDisplayPosts() {
                     <div class="flex items-center space-x-3">
                         <div class="w-10 h-10 rounded-full bg-gray-300">
                            
-
-                            <img class="post-image-click" data-user-id="${post.user_id}" src="${postImage}" alt="Post Image" class="w-full h-full object-cover rounded-full">
+       
+                     <img class="post-image-click w-16 h-10 rounded-full object-cover" 
+                                            data-user-id="${post.user_id}" 
+                                            src="${post.profile_image}" 
+                                            alt="Post Image">
 
                         </div>
                         <div>
@@ -190,7 +193,7 @@ async function fetchAndDisplayPosts() {
             deleteButton.addEventListener('click', async () => {
                 const postId = deleteButton.getAttribute('data-post-id');
                 try {
-                    const deleteResponse = await fetch(`http://127.0.0.1:8000/crud/posts/${postId}/`, {
+                    const deleteResponse = await fetch(`https://social-2nd-project-backend.vercel.app/crud/posts/${postId}/`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Token ${localStorage.getItem('token')}`
@@ -211,6 +214,8 @@ async function fetchAndDisplayPosts() {
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
+
+    
 }
 
 fetchAndDisplayPosts();
@@ -223,7 +228,7 @@ async function likePost(postId) {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/crud/posts/${postId}/like/`, {
+        const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/posts/${postId}/like/`, {
             method: 'POST',
             headers: {
                 'Authorization': `Token ${token}`,
@@ -246,8 +251,8 @@ async function unlikePost(postId) {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/crud/posts/${postId}/unlike/`, {
-            method: 'POST',
+        const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/posts/${postId}/like/`, {
+            method: 'DELETE',
             headers: {
                 'Authorization': `Token ${token}`,
                 'Content-Type': 'application/json'
@@ -278,7 +283,7 @@ async function toggleComments(postId) {
 async function fetchComments(postId) {
     console.log(`Fetching comments for post ID: ${postId}`);
     try {
-        const response = await fetch(`http://127.0.0.1:8000/crud/posts/${postId}/comments/`, {
+        const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/posts/${postId}/comments/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`
@@ -342,7 +347,7 @@ async function fetchComments(postId) {
 async function addComment(postId, commentText) {
     console.log(`Adding comment to post ID ${postId}: ${commentText}`);
     try {
-        const response = await fetch(`http://127.0.0.1:8000/crud/posts/${postId}/comments/`, {
+        const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/posts/${postId}/comments/`, {
             method: 'POST',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`,
@@ -367,7 +372,7 @@ async function editComment(commentId, currentText) {
     if (newText && newText !== currentText) {
         console.log(`Editing comment ID ${commentId} to new text: ${newText}`);
         try {
-            const response = await fetch(`http://127.0.0.1:8000/crud/comments/${commentId}/`, {
+            const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/comments/${commentId}/`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Token ${localStorage.getItem('token')}`,
@@ -394,7 +399,7 @@ async function deleteComment(commentId) {
     if (confirm("Are you sure you want to delete this comment?")) {
         console.log(`Deleting comment ID ${commentId}`);
         try {
-            const response = await fetch(`http://127.0.0.1:8000/crud/comments/${commentId}/`, {
+            const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/comments/${commentId}/`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Token ${localStorage.getItem('token')}`
@@ -418,3 +423,60 @@ async function deleteComment(commentId) {
 // Call the function to fetch and display posts when the script loads
 console.log("Script loaded, fetching posts...");
 fetchAndDisplayPosts();
+
+// Part one js
+document.addEventListener("DOMContentLoaded", function () {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("user_id");
+  
+    if (token && userId) {
+      const apiUrl = `https://social-2nd-project-backend.vercel.app/user/user_details/${userId}/`;
+  
+      fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          Authorization: `Token ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Get  profile fields
+          document.getElementById("profile-image-left").src =
+            data.image || "images/LOLER-inspections-1.jpg";
+
+         document.getElementById("profile-user-name-left").textContent = `@${data.user}`;
+  
+  
+          document.getElementById(
+            "profile-name-left"
+          ).textContent = `${data.first_name} ${data.last_name}`;
+  
+          
+          document.getElementById("profile-bio-left").innerHTML = `<b>Bio-</b> ${
+            data.bio || "No bio available."
+          }`;
+  
+          document.getElementById(
+            "profile-location-left"
+          ).innerHTML = `<b>Location-</b> ${
+            data.location || "No Location available."
+          }`;
+  
+          document.getElementById("profile-phone-left").innerHTML = `<b>Mobile-</b> ${
+            data.mobile_no || "No Mobile number available."
+          }`;
+  
+          const currentDate = new Date();
+          const options = { year: "numeric", month: "long", day: "numeric" };
+          const formattedDate = currentDate.toLocaleDateString("en-US", options);
+          document.getElementById(
+            "join-date"
+          ).textContent = `Joined on ${formattedDate}`;
+        })
+        .catch((error) => console.error("Error fetching profile data:", error));
+    } else {
+      console.error("Token or User ID not found. Redirecting to login.");
+      window.location.href = "signup.html";
+    }
+  });
