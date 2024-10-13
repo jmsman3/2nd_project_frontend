@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const imageFile = document.getElementById('post-image').files[0];
         const videoFile = document.getElementById('post-video').files[0];
         // http://127.0.0.1:8000/
-        // https://social-2nd-project-backend-72na3ocnx.vercel.app
+        // https://social-2nd-project-backend.vercel.app
         const token = localStorage.getItem('token');
         console.log('Retrieved token:', token);
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('https://social-2nd-project-backend-72na3ocnx.vercel.app/crud/posts/', {
+            const response = await fetch('https://social-2nd-project-backend.vercel.app/crud/posts/', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Token ${token}`,

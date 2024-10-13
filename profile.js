@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const userId = localStorage.getItem("user_id");
 
   if (token && userId) {
-    const apiUrl = `https://social-2nd-project-backend-72na3ocnx.vercel.app/user/user_details/${userId}/`;
+    const apiUrl = `https://social-2nd-project-backend.vercel.app/user/user_details/${userId}/`;
 
     fetch(apiUrl, {
       method: "GET",
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //   }
 
 //   function openModal() {
-//     fetch(`https://social-2nd-project-backend-72na3ocnx.vercel.app/user/user_details/${userId}/`, {
+//     fetch(`https://social-2nd-project-backend.vercel.app/user/user_details/${userId}/`, {
 //       method: "GET",
 //       headers: {
 //         Authorization: `Token ${token}`,
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //     console.log("Data being sent for update:", data);
 
-//     fetch(`https://social-2nd-project-backend-72na3ocnx.vercel.app/user/user_details/${userId}/`, {
+//     fetch(`https://social-2nd-project-backend.vercel.app/user/user_details/${userId}/`, {
 //       method: "PUT",
 //       headers: {
 //         Authorization: `Token ${token}`,
@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function openModal() {
-    fetch(`https://social-2nd-project-backend-72na3ocnx.vercel.app/user/user_details/${userId}/`, {
+    fetch(`https://social-2nd-project-backend.vercel.app/user/user_details/${userId}/`, {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`,
@@ -293,7 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Data being sent for update:", data);
 
-    fetch(`https://social-2nd-project-backend-72na3ocnx.vercel.app/user/user_details/${userId}/`, {
+    fetch(`https://social-2nd-project-backend.vercel.app/user/user_details/${userId}/`, {
       method: "PUT",
       headers: {
         Authorization: `Token ${token}`,
@@ -356,7 +356,7 @@ async function fetchAndDisplayUserPosts(userId, token) {
   try {
     console.log("Fetching posts for User ID:", userId);
 
-    const apiUrl = `https://social-2nd-project-backend-72na3ocnx.vercel.app/crud/user/${userId}/posts/`;
+    const apiUrl = `https://social-2nd-project-backend.vercel.app/crud/user/${userId}/posts/`;
     const response = await fetch(apiUrl, {
       method: "GET",
       headers: {
@@ -478,7 +478,7 @@ class="post-image-click w-16 h-10 rounded-full object-cover" alt="Post Image">
 
         try {
           const deleteResponse = await fetch(
-            `https://social-2nd-project-backend-72na3ocnx.vercel.app/crud/posts/${postId}/`,
+            `https://social-2nd-project-backend.vercel.app/crud/posts/${postId}/`,
             {
               method: "DELETE",
               headers: {
