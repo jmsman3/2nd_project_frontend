@@ -8,7 +8,7 @@ async function fetchAndDisplayPosts() {
         console.log("Show the User ID:", userId);
 
         // Fetch posts from the API
-        const response = await fetch('https://social-2nd-project-backend.vercel.app/crud/posts/', {
+        const response = await fetch('https://social-2nd-project-backend-72na3ocnx.vercel.app/crud/posts/', {
             method: 'GET',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`  // Include token for authenticated requests
@@ -193,7 +193,7 @@ async function fetchAndDisplayPosts() {
             deleteButton.addEventListener('click', async () => {
                 const postId = deleteButton.getAttribute('data-post-id');
                 try {
-                    const deleteResponse = await fetch(`https://social-2nd-project-backend.vercel.app/crud/posts/${postId}/`, {
+                    const deleteResponse = await fetch(`https://social-2nd-project-backend-72na3ocnx.vercel.app/crud/posts/${postId}/`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Token ${localStorage.getItem('token')}`
@@ -228,7 +228,7 @@ async function likePost(postId) {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/posts/${postId}/like/`, {
+        const response = await fetch(`https://social-2nd-project-backend-72na3ocnx.vercel.app/crud/posts/${postId}/like/`, {
             method: 'POST',
             headers: {
                 'Authorization': `Token ${token}`,
@@ -251,7 +251,7 @@ async function unlikePost(postId) {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/posts/${postId}/like/`, {
+        const response = await fetch(`https://social-2nd-project-backend-72na3ocnx.vercel.app/crud/posts/${postId}/like/`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Token ${token}`,
@@ -283,7 +283,7 @@ async function toggleComments(postId) {
 async function fetchComments(postId) {
     console.log(`Fetching comments for post ID: ${postId}`);
     try {
-        const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/posts/${postId}/comments/`, {
+        const response = await fetch(`https://social-2nd-project-backend-72na3ocnx.vercel.app/crud/posts/${postId}/comments/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`
@@ -347,7 +347,7 @@ async function fetchComments(postId) {
 async function addComment(postId, commentText) {
     console.log(`Adding comment to post ID ${postId}: ${commentText}`);
     try {
-        const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/posts/${postId}/comments/`, {
+        const response = await fetch(`https://social-2nd-project-backend-72na3ocnx.vercel.app/crud/posts/${postId}/comments/`, {
             method: 'POST',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`,
@@ -372,7 +372,7 @@ async function editComment(commentId, currentText) {
     if (newText && newText !== currentText) {
         console.log(`Editing comment ID ${commentId} to new text: ${newText}`);
         try {
-            const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/comments/${commentId}/`, {
+            const response = await fetch(`https://social-2nd-project-backend-72na3ocnx.vercel.app/crud/comments/${commentId}/`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Token ${localStorage.getItem('token')}`,
@@ -399,7 +399,7 @@ async function deleteComment(commentId) {
     if (confirm("Are you sure you want to delete this comment?")) {
         console.log(`Deleting comment ID ${commentId}`);
         try {
-            const response = await fetch(`https://social-2nd-project-backend.vercel.app/crud/comments/${commentId}/`, {
+            const response = await fetch(`https://social-2nd-project-backend-72na3ocnx.vercel.app/crud/comments/${commentId}/`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Token ${localStorage.getItem('token')}`
@@ -430,7 +430,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const userId = localStorage.getItem("user_id");
   
     if (token && userId) {
-      const apiUrl = `https://social-2nd-project-backend.vercel.app/user/user_details/${userId}/`;
+      const apiUrl = `https://social-2nd-project-backend-72na3ocnx.vercel.app/user/user_details/${userId}/`;
   
       fetch(apiUrl, {
         method: "GET",
