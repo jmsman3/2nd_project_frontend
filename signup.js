@@ -18,7 +18,7 @@
 //     if (password === confirm_password) {
 //         // document.getElementById("error").innerText = "";
 //         if (/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password)) {
-//             fetch("https://social-2nd-project-backend.vercel.app/user/register/", {
+//             fetch(" http://127.0.0.1:8000/user/register/", {
 //                 method: "POST",
 //                 headers: { "content-type": "application/json" },
 //                 body: JSON.stringify(info)
@@ -133,7 +133,7 @@ const handleRegistration = (event) => {
 //     const password = getValue("login-password");
 
 //     if (username && password) {
-//         fetch("https://social-2nd-project-backend.vercel.app/user/login/", {
+//         fetch(" http://127.0.0.1:8000/user/login/", {
 //             method: "POST",
 //             headers: { "content-type": "application/json" },
 //             body: JSON.stringify({ username, password }),
@@ -166,7 +166,7 @@ const handleRegistration = (event) => {
 //     waitButton.style.display = 'inline-block';
 
 //     if (username && password) {
-//         fetch("https://social-2nd-project-backend.vercel.app/user/login/", {
+//         fetch(" http://127.0.0.1:8000/user/login/", {
 //             method: "POST",
 //             headers: { "content-type": "application/json" },
 //             body: JSON.stringify({ username, password }),

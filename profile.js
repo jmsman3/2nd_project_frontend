@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //   }
 
 //   function openModal() {
-//     fetch(`https://social-2nd-project-backend.vercel.app/user/user_details/${userId}/`, {
+//     fetch(` http://127.0.0.1:8000/user/user_details/${userId}/`, {
 //       method: "GET",
 //       headers: {
 //         Authorization: `Token ${token}`,
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //     console.log("Data being sent for update:", data);
 
-//     fetch(`https://social-2nd-project-backend.vercel.app/user/user_details/${userId}/`, {
+//     fetch(` http://127.0.0.1:8000/user/user_details/${userId}/`, {
 //       method: "PUT",
 //       headers: {
 //         Authorization: `Token ${token}`,
